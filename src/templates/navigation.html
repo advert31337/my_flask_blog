@@ -1,0 +1,24 @@
+<header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand mr-4" href="/">Блог о контекстной рекламе</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav mr-auto">
+                    <a href="{{ url_for('main.hello') }}" class="nav-item nav-link">Статьи</a>
+                    <a href="/" class="nav-item nav-link">Цены</a>
+                    <a href="{{ url_for('main.about') }}" class="nav-item nav-link">Обо мне</a>
+                    <a href="/" class="nav-item nav-link">Контакты</a>
+                </div>
+                <!-- Navbar right side -->
+                <div class="navbar-nav">
+                    <a href="{{ url_for('users.login') }}" class="nav-item nam-link">Login</a>
+                    <a href="{{ url_for('users.register') }}" class="nav-item nam-link">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
