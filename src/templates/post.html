@@ -16,6 +16,13 @@
         </div>
         <h2 class="article-title">{{ context.post.title }}</h2>
         <p class="article-content">{{ context.post.content }}</p>
+        <div class="tags">
+                {% for tag in context.tags %}
+                <a href="{{ url_for('posts.tag_detail', slug=tag.slug) }}">
+                    <span class="alert alert-dark">{{ tag.name }}</span>
+                </a>
+                {% endfor %}
+        </div>
         </div>
     </article>
     <!-- Modal-->

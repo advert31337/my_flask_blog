@@ -3,7 +3,7 @@ from flask import (Blueprint, render_template, url_for, flash,
                     redirect, request, abort)
 from flask_login import current_user, login_required
 from src import db
-from src.models import Post
+from src.models import Post, Tag
 from src.posts.forms import PostForm
 
 
@@ -30,9 +30,11 @@ def new_post():
 @posts.route('/post/<int:post_id>')
 def post(post_id):
     post = Post.query.get_or_404(post_id)
+    tags = post.tags
     context= {
         'title': post.title,
-        'post' : post
+        'post' : post,
+        'tags' : tags
     }
     return render_template('post.html', context=context)
 
@@ -40,7 +42,8 @@ def post(post_id):
 @posts.route('/post/<slug>')
 def post_detail(slug):
     post = Post.query.filter(Post.slug==slug).first()
-    return render_template('posts/post_datail', post=post)
+    tags = post.tags
+    return render_template('posts/post_datail', post=post, tags=tags)
 
 
 
@@ -78,3 +81,14 @@ def delete_post(post_id):
     db.session.commit()
     flash('Запись удалена', 'success')
     return redirect(url_for('hello'))
+
+@posts.route('/tag/<slug>')
+def tag_detail(slug):
+    tag = Tag.query.filter(Tag.slug==slug).first()
+    posts = tag.posts.all()
+    context = {
+        'tag': tag,
+        'posts': posts
+    }
+    return render_template('tag_detail.html', context=context)
+

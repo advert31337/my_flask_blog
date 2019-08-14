@@ -4,18 +4,24 @@
     <article class="media content-section">
         <img src="{{ url_for('static', filename='profile_pics/' + context.post.author.image_file) }}" alt="" class="rounded-circle article-img">
         <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="#">{{ post.author.username }}</a>
-            <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
-            {% if post.author == current_user %}
-                <div>
-                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}"></a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Удалить</button>
-                </div>
-            {% endif %}
-        </div>
-        <h2 class="article-title">{{ post.title }}</h2>
-        <p class="article-content">{{ post.content }}</p>
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ post.author.username }}</a>
+                <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                {% if post.author == current_user %}
+                    <div>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}"></a>
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Удалить</button>
+                    </div>
+                {% endif %}
+            </div>
+            <h2 class="article-title">{{ post.title }}</h2>
+            <p class="article-content">{{ post.content }}</p>
+            <div class="tags">
+                {% for tag in tags %}
+                <span class="label label-primary">{{ tag.name }}</span>
+                {% endfor %}
+                
+            </div>
         </div>
     </article>
     <!-- Modal-->

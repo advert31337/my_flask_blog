@@ -15,6 +15,11 @@ def slugify(s):
     pattern = r'[^\w+]'
     return re.sub(pattern, '-', s)
 
+post_tags = db.Table('post_tags',
+                        db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
+                        db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
+                        )
+
 # models.py
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,7 +28,7 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(100), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
-
+    
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
         return s.dumps({'user_id': self.id}).decode('utf-8')
@@ -47,6 +52,7 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     slug = db.Column(db.String(140), unique=True)
+    tags = db.relationship('Tag', secondary=post_tags, backref=db.backref('posts', lazy='dynamic'))
 
     def __init__(self, *args, **kwargs):
         super(Post, self).__init__( *args, **kwargs)
@@ -61,4 +67,13 @@ class Post(db.Model):
 
 
 class Tag(db.Model):
-    pass
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    slug = db.Column(db.String(100))
+
+    def __init__(self, *args, **kwargs):
+        super(Tag, self).__init__(*args, **kwargs)
+        self.slug = slugify(name)
+
+    def __repr__(self):
+        return f"Tag('{self.name}')"

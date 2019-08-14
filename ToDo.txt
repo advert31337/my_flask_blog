@@ -1,4 +1,7 @@
-add Tags to model.py and set up migrations from Molchanov
+add Tags to model.py and set up migrations from Molchanov - complete
+correct troubles with paginations in tag_detail.html
+
+
 integrate Elastic search from Miguel Grinberg
 Integrate environments
 integrate news parsers
