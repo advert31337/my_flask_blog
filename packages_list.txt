@@ -6,3 +6,6 @@ flask-login
 flask-mail
 flask-migrate
 flask-script
+flask-admin
+
+flask-sequrity

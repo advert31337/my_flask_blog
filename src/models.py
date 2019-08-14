@@ -20,7 +20,12 @@ post_tags = db.Table('post_tags',
                         db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
                         )
 
-# models.py
+roles_users = db.Table('roles_userl',
+                        db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+                        db.Column('role_id', db.Integer(), db.ForeignKey('role.id'))
+                        )
+
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
@@ -28,6 +33,7 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(100), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
+    roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
     
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -44,6 +50,13 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
+class Role(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(100), unique=True)
+    description = db.Column(db.String(255))
+
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -28,7 +28,16 @@
                     <a href="/" class="nav-item nav-link">Цены</a>
                     <a href="{{ url_for('main.about') }}" class="nav-item nav-link">Обо мне</a>
                     <a href="/" class="nav-item nav-link">Контакты</a>
+
+
+                    <form class="form-inline my-2 my-lg-0" method="GET">
+                            <input class="form-control mr-sm-2" name="q" type="search" value="{{ request.args.get('q', '') }}" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+
                 </div>
+                
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav">
                     {% if current_user.is_authenticated %}

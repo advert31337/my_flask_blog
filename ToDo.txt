@@ -1,5 +1,11 @@
 add Tags to model.py and set up migrations from Molchanov - complete
-correct troubles with paginations in tag_detail.html
+correct troubles with paginations in tag_detail.html - complete
+fix slugs for cyrilyc posts
+integrate admin via flask_admin
+previews and next page
+customize admin panel
+access to admin panel
+WYSIWYG Editor CKEditor
 
 
 integrate Elastic search from Miguel Grinberg

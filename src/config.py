@@ -1,12 +1,12 @@
 import os
 
+basedir = os.path.abspath(os.path.dirname(__file__))
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(BASE_DIR, "site.db")
-
+print(basedir)
 class Config:
     SECRET_KEY = 'a24316beadadff2c538006d54a0dcea80dafd52b8d35d04da8'#os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = f'sqlite:///{db_path}' #os.environ.get('SQLALCHEMY_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = f'sqlite:///{basedir}/site.db' #os.environ.get('SQLALCHEMY_DATABASE_URI')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587

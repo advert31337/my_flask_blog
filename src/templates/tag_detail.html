@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Записи связанные с тэгом "{{ context.tag.name }}"</h1>
-    {% for post in context.posts %}
+    {% for post in context.posts.items %}
         <article class="media content-section">
           <img src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="" class="rounded-circle article-img">
             <div class="media-body">
@@ -15,5 +15,14 @@
             </div>
         </article>
     {% endfor %}
-
+    {% for page_num in context.posts.iter_pages(left_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+      {% if context.page == page_num %}
+        <a class="btn btn-info mb-4" href="{{ url_for('main.hello', page=page_num) }}">{{ page_num }}</a>
+      {% else %}
+        <a class="btn btn-outline-info mb-4" href="{{ url_for('main.hello', page=page_num) }}">{{ page_num }}</a>
+      {% endif %}
+    {% else %}
+    {% endif %}
+  {% endfor %}
 {% endblock %}

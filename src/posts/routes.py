@@ -84,8 +84,10 @@ def delete_post(post_id):
 
 @posts.route('/tag/<slug>')
 def tag_detail(slug):
+    page = request.args.get('page', 1, type=int)
     tag = Tag.query.filter(Tag.slug==slug).first()
-    posts = tag.posts.all()
+    posts = tag.posts.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    print(posts)
     context = {
         'tag': tag,
         'posts': posts
