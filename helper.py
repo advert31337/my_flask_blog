@@ -3,8 +3,8 @@ import requests
 
 
 def get_offers():
-    webmaster_id = '56448'
-    token = '297cf95efb029a1e6daf35fb75697849'
+    webmaster_id = '56343448'
+    token = 'sadfdsa'
     url = f'http://m1-shop.ru/offers_export_api/?webmaster_id={webmaster_id}&api_key={token}'
     
     r = requests.get(url).json()
@@ -21,7 +21,7 @@ posts = [
     {
         'author': 'Victor Miroshnikov',
         'title': 'Как я настраиваю контекстную рекламу',
-        'content': 'Бля, да тут все просто, берешь и делаешь',
+        'content': 'Тут все просто, берешь и делаешь',
         'date_posted': 'August 20, 2019'
     }
 ]

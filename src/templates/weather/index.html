@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Погода</h1>
+    <p>
+        {% if weather %}
+        Погода {{ weather.temp_C }}, ощущается как {{ weather.FeelsLikeC }}
+        {% else %}
+        Сервис погоды не доступен
+        {% endif %}
+    </p>
+{% endblock %}

@@ -5,6 +5,7 @@ integrate admin via flask_admin
 previews and next page
 customize admin panel
 access to admin panel
+config for product and development
 WYSIWYG Editor CKEditor
 
 

@@ -8,4 +8,7 @@ flask-migrate
 flask-script
 flask-admin
 
+not used
 flask-sequrity
+flask-oauth
+flask-testing

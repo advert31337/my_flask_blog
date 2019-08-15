@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-8">
+            <h2>Новости</h2>
+            {% for n in news %}
+                <h3><a href="{{ n.url }}">{{ n.title }}</a></h3>
+                <small>{{ n.published }}</small>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

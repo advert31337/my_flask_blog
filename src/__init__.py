@@ -42,11 +42,15 @@ def create_app(config_class=Config):
     from .users.routes import users
     from .posts.routes import posts
     from .main.routes import main
+    from .weather.routes import weather
+    from .news.routes import news
     from .errors.handlers import errors
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
     app.register_blueprint(errors)
+    app.register_blueprint(weather)
+    app.register_blueprint(news, url_prefix='/media')
 
     return app
 
