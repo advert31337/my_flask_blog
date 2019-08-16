@@ -13,3 +13,6 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = 'adv31337@gmail.com'#os.environ.get('EMAIL_USER')
     MAIL_PASSWORD = '4544454845fdsfjkjeiII(*kkkj'#os.environ.get('EMAIL_PASS')
+
+    WEATHER_DEFAULT_CITY = 'Moscow.Russia'
+    WEATHER_API_KEY = 'a3204219c1cc4d5c9a0101253191508'

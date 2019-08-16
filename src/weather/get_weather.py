@@ -1,10 +1,13 @@
 import requests
+from config import Config
 
 
 
 def weather_by_city(city_name):
+    if not city_name:
+        city_name = current_app.config['WEATHER_DEFAULT_CITY']
     params = {
-        'key': 'a3204219c1cc4d5c9a0101253191508',
+        'key': current_app.config['WEATHER_API_KEY'],
         'q': city_name,
         'format':'json',
         'num_of_days':1,
