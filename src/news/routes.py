@@ -1,13 +1,14 @@
 from flask import render_template, request, Blueprint
-from src.models import Post
+from .models import News
 from .handler import get_news
+
 
 news = Blueprint('news', __name__)
 
 
 @news.route('/news')
 def news_collect():
-    n = get_news()
+    n = News.query.order_by(News.published.desc()).all()
     context = {
         'title': 'Новости'
     }

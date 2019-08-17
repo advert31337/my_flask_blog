@@ -7,6 +7,7 @@ from flask_mail import Mail
 from flask_admin import Admin
 from src.config import Config
 
+
 from flask_admin.contrib.sqla import ModelView
 
 
@@ -51,6 +52,8 @@ def create_app(config_class=Config):
     app.register_blueprint(errors)
     app.register_blueprint(weather)
     app.register_blueprint(news, url_prefix='/media')
+
+    
 
     return app
 
