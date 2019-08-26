@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-8 news-content">
+            <h2>{{ context.title }}</h2>
+            {{ context.article.text|safe }}
+        </div>
+        <!-- <div class="col-4">
+            <h2>Другие новости</h2>
+        </div> -->
+    </div>
+{% endblock %}

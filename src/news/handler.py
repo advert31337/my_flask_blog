@@ -1,5 +1,5 @@
 from datetime import datetime
-from news.models import News
+from .models import News
 from src import db
 import requests
 from bs4 import BeautifulSoup
