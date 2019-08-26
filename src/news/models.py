@@ -26,6 +26,10 @@ class Comment(db.Model):
         db.ForeignKey('user.id', ondelete='CASCADE'),
         index=True
     )
+    news = db.relationship('News', backref='comments')
+    user = db.relationship('User', backref='comments')
+
+
 
     def __repr__(self):
         return '<Comment {}>'.format(self.id)
