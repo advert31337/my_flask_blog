@@ -24,4 +24,4 @@ def error_500(error):
     context = {
         'title': 'Ошибка 500'
     }
-    return render_template('error/500.html', context=context), 500
+    return render_template('errors/500.html', context=context), 500
