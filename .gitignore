@@ -3,3 +3,4 @@ __pycache__/
 wenv/
 config.py
 learn_python/
+venv/
